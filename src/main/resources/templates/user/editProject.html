@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--    BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--    FONT AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="../../css/style.css"/>
+    <title>Edit Project Details</title>
+
+</head>
+<body>
+<section>
+    <div  class="container">
+        <h2 class="mb-4">Edit Project Details</h2>
+
+        <form action="/user/editProject" method="post" th:if="${session.editProject}">
+
+            <input type="hidden" name="projectId" th:value="${session.editProject.projectId}">
+            <div class="mb-3">
+                <label class="form-label">Project Name</label>
+                <input type="text" required class="form-control" name="projectName" placeholder="Project Name" th:value="${session.editProject.projectName}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Project Intro</label>
+                <textarea class="form-control" name="intro" placeholder="Project Intro">[[${session.editProject.intro}]]</textarea>
+            </div>
+
+            <div class="mb-3">
+                <p>Please select your project status:</p>
+                  <input th:checked="${session.editProject.status == 0}" type="radio" required name="status" value=0 onclick="statusHandler(this)">
+                  <label >Pre</label><br>
+                  <input th:checked="${session.editProject.status == 1}" type="radio" required  name="status" value=1 onclick="statusHandler(this)">
+                  <label>Start</label><br>
+                  <input th:checked="${session.editProject.status == 3}" type="radio" required  name="status" value=3 onclick="statusHandler(this)">
+                  <label >End</label>
+            </div>
+
+            <div class="mb-3">
+                <label  class="form-label">Start Date</label>
+                <input type="date" class="form-control" name="startDate" th:value="${session.editProject.startDate}">
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">End Date</label>
+                <input type="date" required class="form-control" th:value="${session.editProject.endDate}" name="endDate">
+            </div>
+
+            <th:block th:each="i: ${#numbers.sequence(0, 4)}">
+                <div class="mb-3">
+                    <label class="form-label">Member [[${i+1}]]</label>
+                    <input type="text" th:value="${session.editProject.members.size() > i} ? ${session.editProject.members.get(i).username} : ''" class="form-control"  name="member" placeholder="Member Name">
+                </div>
+            </th:block>
+
+            <button type="submit" class="btn btn-outline-primary btn-lg" id="formUpdate">Update</button>
+
+</form>
+    </div>
+
+</section>
+<!--BOOTSTRAP-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const startDateEl = document.querySelector('[name="startDate"]');
+    const preStatusEl = document.querySelector('[name="status"]');
+    function statusHandler (e) {
+        if(e.value == 0 && !startDateEl.hasAttribute("disabled")){
+            startDateEl.removeAttribute("required");
+            startDateEl.setAttribute("disabled", "");
+            startDateEl.setAttribute("value",'');
+        }else if (e.value != 0 && startDateEl.hasAttribute("disabled")){
+            startDateEl.removeAttribute("disabled");
+            startDateEl.setAttribute("required", "");
+        }
+    }
+
+    window.onload = () => {
+        statusHandler (preStatusEl);
+    }
+</script>
+
+</body>
+</html>

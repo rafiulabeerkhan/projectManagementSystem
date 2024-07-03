@@ -1,0 +1,17 @@
+
+.user{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px
+}
+.user .user-icon{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #efefef;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

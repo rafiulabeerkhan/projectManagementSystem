@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::body})">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Members to projects</title>
+</head>
+<body>
+<form action="createProject" method="post">
+    <h2>Create Project</h2>
+
+    <div class="mb-3">
+        <label for="projectname" class="form-label">Project Name</label>
+        <input type="text" required class="form-control" id="projectname" name="projectName" placeholder="Project Name">
+    </div>
+    <div class="mb-3">
+        <label for="intro" class="form-label">Project Name</label>
+        <textarea class="form-control" id="intro" name="intro" placeholder="Project Name"></textarea>
+    </div>
+    <!--    <div class="mb-3">-->
+    <!--        <label for="owner" class="form-label" >Project Name</label>-->
+    <!--        <input type="text" required class="form-control" id="owner" name="owner" placeholder="Project Name">-->
+    <!--    </div>-->
+    <div class="mb-3">
+        <p>Please select your project status:</p>
+          <input type="radio" required id="pre" name="status" value=0>
+          <label for="pre">Pre</label><br>
+          <input type="radio" required id="start" name="status" value=1>
+          <label for="start">Start</label><br>
+          <input type="radio" required id="end" name="status" value=3>
+          <label for="end">End</label>
+    </div>
+    <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input type="date" class="form-control" id="startDate" name="startDate">
+    </div>
+    <div class="mb-3">
+        <label for="endDate" class="form-label">End Date</label>
+        <input type="date" required class="form-control" id="endDate" name="endDate">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Member 1</label>
+        <input type="text"  class="form-control"  name="members" placeholder="Project Name">
+        <!--        <button type="button" class="btn btn-outline-info" id="addMembers" name="members">+ Add Members</button>-->
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" >Members</label>
+        <input type="text"  class="form-control" name="members" placeholder="Project Name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" >Members</label>
+        <input type="text"  class="form-control" name="members" placeholder="Project Name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" >Members</label>
+        <input type="text"  class="form-control" name="members" placeholder="Project Name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" >Members</label>
+        <input type="text"  class="form-control" name="members" placeholder="Project Name">
+    </div>
+    <button type="submit" class="btn btn-outline-primary btn-lg">Submit</button>
+</form>
+</body>
+</html>
